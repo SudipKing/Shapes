@@ -1,0 +1,25 @@
+Assignment name: Assignment 2
+TCSS 305: Programming Practicum, Autumn 2025
+
+Name: Sudip Chaudhary
+UWNetID: sudipc
+
+Assignment Overview:
+The purpose of this assignment was to design and implement an object-oriented hierarchy of geometric shapes using inheritance and abstraction. The hierarchy included an abstract base class AbstractShape, which defined common behaviors such as area calculation, shape name retrieval, and object comparison. Derived classes such as Circle, Rectangle, Square, and Triangle extended AbstractShape, implementing their own versions of the area() method to compute their geometric properties. A ShapeFactory class was also created to centralize object creation for different shapes, while ShapeTester acted as the driver to instantiate multiple shapes, display them before and after sorting, and test the correct implementation of the Comparable interface. 
+
+Technical Impression:
+To complete the assignment, I began by defining AbstractShape as the superclass that would enforce a common structure for all shape types. The methods area(), name(), and compareTo() provided consistent functionality and ensured that each subclass maintained a standard interface. One interesting part was implementing compareTo() to allow sorting by both name and area, which made testing with Collections.sort() straightforward.
+The implementation of Rectangle, Square, and Triangle was relatively smooth, though I had to pay attention to constructor validation to ensure no negative or zero dimensions were accepted. However, the main challenge arose in Circle and ShapeFactory. Initially, Circle failed to compile because it tried to call super("Circle") even though AbstractShape did not have a constructor with parameters. Additionally, Circle attempted to override the toString() method, which was declared final in AbstractShape. This caused multiple compilation errors that required debugging and structural review. I resolved them by removing the unnecessary constructor call, deleting the overriding toString() method, and adjusting how name() was referenced.
+Another difficulty was ensuring that ShapeFactory correctly created shape instances without triggering constructor mismatches, particularly after fixing the Circle implementation. Once these were resolved, all files compiled successfully, and the tester output displayed properly sorted shapes by name and area. 
+
+Unresolved problems in my submission:
+All files compile and run successfully in inteliJ, including sorting and formatted output from ShapeTester. There are no remaining syntax or runtime errors. The only minor inconvenience was adjusting Javadoc consistency across all classes to maintain identical formatting, but its been resolved.
+
+Citations and Collaborations:
+I used Copilot for minor Javadoc formatting guidance and to verify documentation consistency with proper @param, @return, and @throws tags.
+
+Extra Credit: 
+None since there wasn't any to do.
+
+Questions:
+Is it generally acceptable to make a method like toString() final in an abstract superclass, or would it be better practice to allow subclasses to customize how their details are displayed?
